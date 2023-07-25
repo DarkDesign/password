@@ -37,7 +37,7 @@ export class Crypto {
         const rand = new Rand(text)
 
 
-        for (let index = 0; index < iterations; index++) {
+        for (let index = 0; index <= iterations; index++) {
             const randomIndex = this.getRandomInt(rand, 1, text.length - 1)
             const randomChar = SPECIAL_CHARACTERS[this.getRandomInt(rand, 0, SPECIAL_CHARACTERS.length)]
             text = this.replaceCharacterByIndex(text, randomIndex, randomChar)
