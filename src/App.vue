@@ -4,17 +4,16 @@
             <template #title> Password Generator </template>
             <template #subtitle> For the extra lazy. Allows you to make different passwords from one password :D </template>
             <template #content>
-
+                <div>Password</div>
                 <Password
-                    class="password"
-                    placeholder="Password"
+                    class="password mt-10"
                     v-model="text"
                     :feedback="false"
                     toggleMask/>
 
+                <div class="mt-20">Iterations</div>
                 <InputNumber
                     class="w-full mt-10"
-                    placeholder="Iterations"
                     :min="0"
                     :max="100"
                     :disabled="text.length === 0"
@@ -30,13 +29,21 @@
                     :max="100"
                     v-model="numberOfCycles"/>
 
-                <div class="switch mt-10">
+                <div class="switch mt-20">
                     <InputSwitch v-model="isWildcards" /> Use special characters
                 </div>
 
+                <div class="mt-20">Result</div>
                 <div class="p-inputgroup flex-1  mt-10">
-                    <InputText :disabled="cryptoResult.length === 0" placeholder="Result" readonly :value="cryptoResult" />
-                    <Button @click="copy(cryptoResult)" :disabled="cryptoResult.length === 0" icon="pi pi-copy" />
+                    <InputText
+                        :disabled="cryptoResult.length === 0"
+                        readonly
+                        :value="cryptoResult" />
+
+                    <Button
+                        @click="copy(cryptoResult)"
+                        :disabled="cryptoResult.length === 0"
+                        icon="pi pi-copy" />
                 </div>
 
 
@@ -49,6 +56,7 @@
                     label="Generate password"/>
             </template>
         </Card>
+        <div class="help-text mt-10">The settings always produce the same result</div>
     </div>
     <Toast />
 </template>
@@ -152,6 +160,7 @@ export default class App extends Vue {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100%;
 
     .w-full {
@@ -164,6 +173,10 @@ export default class App extends Vue {
         }
     }
     .mt-10 {
+        margin-top: 10px;
+    }
+
+    .mt-20 {
         margin-top: 20px;
     }
     .switch {
@@ -171,6 +184,10 @@ export default class App extends Vue {
         align-items: center;
         height: 100%;
         gap: 10px
+    }
+
+    .help-text {
+        font-size: 0.8em
     }
 }
 </style>
